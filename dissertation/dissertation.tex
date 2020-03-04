@@ -14,7 +14,8 @@
         Nathan Gordon Kirkpatrick \\
         Raza Ali \\
         Scott Brown \\
-        Josep Perna Montane}
+        Josep Perna Montane\\
+        Ruairi Gielty}
 \date{9 January 2009}
 
 \maketitle
@@ -47,6 +48,8 @@ objectives and project state at the time of writing.  Sections
 \ref{sec:alice} through Section \ref{sec:managing} discuss issues that
 arose during the project...
 
+
+
 %==============================================================================
 \section{Case Study Background}
 
@@ -59,7 +62,29 @@ Include details of
 \end{itemize}
 
 %==============================================================================
-\section{Alice}
+\section{QR Code Implementation}
+On the second customer meeting, Obashi told us that we should scatter the
+cubes in a wider area. The research done and different approaches taken
+for solving this problem are explained in the Cube Scattering section. %reference it
+
+After doing research and trying the different approaches, we decided to
+use a QR code that would provide our application with the size of
+the room so that cubes could be scattered accordingly. To do this,
+when starting the application we place the QR code in the centre of
+the room and scan it before entering the AR Activity.
+
+This left us with the need of implementing a QR reader in our application.
+Being this something that is implemented in many apps we decided to use
+ZXing\cite{ZXing}, an existing QR scanning library. Implementing it was
+pretty straightforward thanks to all of the documentation provided in
+the repository. The only blocker that we found was that we had find a
+way of passing the measures retrieved from the QR scanner to the AR view.
+We used the extra field of the intent to do this. The extra field,
+contains a dictionary in which we could store the measures and then
+they could be retrieved in the AR activity and used to scatter the
+cubes.
+
+\section{aaaa}
 \label{sec:alice}
 
 ALICE \cite{alice} was beginning to get very tired of sitting by her sister
