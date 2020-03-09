@@ -84,6 +84,70 @@ contains a dictionary in which we could store the measures and then
 they could be retrieved in the AR activity and used to scatter the
 cubes.
 
+\section{Testing}
+When we set out to start writing tests for our application, we researched testing 
+frameworks for AR applications but we realized that none were available.
+This is because testing an augmented reality application is quite a difficult task, 
+due to the unpredictability and volatility of AR environments. 
+Another big factor, is that AR environments are hugely “continuous”, it is 
+very difficult to reach 100\% test coverage when there are an almost infinite 
+amount of states that an environment can be in. Moreover, AR applications are
+quite a new thing and a testing environment for them still hasn't had time to
+be developed\cite{ArTesting}.
+
+We conducted two distinct types of tests: instrumented tests and unit tests. 
+In Android, a unit test is just a regular JUnit test which runs on the hardware that an application is 
+written on using the JVM or in a continuous integration environment. 
+An instrumented test on the other hand, runs on a physical device or a device 
+emulator which the app is designed for\cite{AndroidTests}. We tried to use unit 
+tests in all of the cases possible, as they could be executed in the CI/CD pipeline. 
+
+In some cases such as the ArActivity, JUnit tests could not be used due to the Activity
+implementing a check for the version of OpenGL of the device that would close the
+application if it failed (we were not able to bypass this tests using mocking frameworks).
+
+\subsection{Unit Testing}
+After a lot of research, we found some frameworks that helped us build unit tests. 
+Mockito is a “unit based mocking framework”\cite{Mockito} which gave us an excellent alternative 
+to simulation of an AR environment for testing purposes. Mockito was invaluable in 
+the cases where we wanted to test methods which are called in an AR environment, 
+and operate on data from this environment.
+
+Instead of actually simulating an environment for our app to interact with, Mockito 
+gave us the functionality to create “mock objects”. A mock object is a dummy 
+implementation of a class, where the output of its methods can be defined by us, 
+the testers.
+
+One example of our use of Mockito was when testing some methods that used the plane's dimensions,
+to scatter cubes. According to Google's ARCore developer references, a plane object “describes the 
+current best knowledge of a real-world planar surface”\cite{Plane}. Thus, a plane is an object 
+which describes the plane that our app operates on. As it was unfeasible to create a plane
+using the provided AR Core API, we used Mockito to create a mock plane object
+that yielded the characteristics we needed for the tests\cite{MockitoRerence}.
+
+This mock plane hugely simplified the testing process for any method which 
+operated on a plane object, and also meant that tests were more consistent as 
+we had the ability to define what is returned by Google's ARCore methods; methods 
+which are otherwise volatile.
+
+We also used Robolectric, which is a powerful alternative to conducting tests instrumentally (on 
+an android device or emulator)\cite{Roboelectric}. We used it to test application interactions
+such as intent passing (the construct used to move between activities and pass 
+information between them). These require the android environment to be configured in
+a sandbox in order have the appropriate context for the methods to operate on.
+
+Using Robolectric allowed us to add these tests to the CI/CD pipeline and remove
+the manual work required to run instrumented tests directly on the device or the
+emulator.
+
+\subsection{Instrumented Testing}
+
+We had to test two activities using instrumented testing, due to the constraints
+stated above. For it we used Espresso, an Android testing framework specially 
+designed for UI testing. With it we were able to capture intents and analyze their
+correctness\cite{Espresso}.
+
+
 \section{aaaa}
 \label{sec:alice}
 
