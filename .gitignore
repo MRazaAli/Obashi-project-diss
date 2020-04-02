@@ -86,4 +86,30 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Latex specific
+*.aux
+*.glo
+*.idx
+*.log
+*.toc
+*.ist
+*.acn
+*.acr
+*.alg
+*.bbl
+*.blg
+*.dvi
+*.glg
+*.gls
+*.ilg
+*.ind
+*.lof
+*.fdb*
+*.fls
+*.lot
+*.maf
+*.mtc
+*.mtc1
+*.out
+*.synctex.gz
 # End of https://www.gitignore.io/api/git,linux,macos,windows
