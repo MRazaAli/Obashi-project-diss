@@ -89,8 +89,8 @@ cubes.
 Initially when it came to scattering the cubes, a simple algorithm to calculate a random position 
 on the plane detected by ARCore was used. The functions \verb|getExtentX()| and \verb|getExtentY()| 
 in the \verb|getRandomPlacement| method in the \verb|ArUtils.java| file return the estimated 
-lengths for each local axis centred on the plane, therefore this must be doubled for both \verb|+| 
-and \verb|-|. A translation of the center of the plane is then used to create an anchor node which 
+lengths for each local axis centred on the plane, therefore this must be doubled for both '\verb|+|' 
+and '\verb|-|'\cite{getExtent}. A translation of the center of the plane is then used to create an anchor node which 
 is then assigned the cube to later on. However with this basic implementation two serious blockers 
 emerged.
 
@@ -104,7 +104,7 @@ The second major blocker encountered was that not all the cubes that were desire
 were being placed, the first assumption was that this was due to the distance trying to be 
 maintained between all the cubes but later discovered this was due to the plane not being 
 large enough to fit all the cubes in. For the plane detected by ARCore to grow, the user 
-needed to pan the camera and ARCore needed to detect that the plane can be expanded - this 
+needed to pan the camera and ARCore needed to detect that the plane can be expanded \cite{planeDiscovery} - this 
 can therefore create a situation were the user is searching for the last cubes which have 
 not been placed due to the plane not being large enough but the user is panning in such a
  way that ARCore is not recognising the plane and the game being stuck in a limbo state. 
@@ -118,7 +118,7 @@ not been placed due to the plane not being large enough but the user is panning 
 When it came to assigning elements from the diagram to the cubes it was decided that there 
 was to be a list of the elements from the diagram, \verb|listToStack| which would then be 
 used to create a stack of all the elements, \verb|Collections.shuffle| is then used to 
-randomise the order of the stack and then whenever a cube was needing to be placed and 
+randomise the order of the stack \cite{shuffle} and then whenever a cube was needing to be placed and 
 the position was okay an element could be popped from the stack and assigned, with the 
 number of cubes needing to be placed coming from the difficulty selection on the main 
 screen.
